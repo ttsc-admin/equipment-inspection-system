@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Machine System</title>
+  <meta name="apple-mobile-web-app-title" content="Machine System">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#1667ff">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231667ff'/%3E%3Cpath d='M32 12 48 19v13c0 10-7 17-16 21-9-4-16-11-16-21V19Z' fill='white'/%3E%3Cpath d='m24 32 6 6 12-13' fill='none' stroke='%231667ff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <style>
+    html, body { margin:0; padding:0; width:100%; height:100%; background:#f1f7ff; overflow:hidden; }
+    .app-frame { position:fixed; inset:0; width:100%; height:100vh; height:100dvh; }
+    iframe { display:block; width:100%; height:100%; border:0; background:#f1f7ff; }
+    noscript { display:block; padding:24px; font:16px/1.6 system-ui,sans-serif; }
+  </style>
+</head>
+<body>
+  <div class="app-frame">
+    <iframe id="gas-frame" title="Machine System" allowfullscreen></iframe>
+  </div>
+  <noscript>Enable JavaScript to open Machine System.</noscript>
+  <script>
+    const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzf8no36LYLF_lgWKlDUJYA0Vnu_4GITV5AEgjmFaEkhG1ckB6eY4p_-zY94vK_Bye8iQ/exec';
+    const gasFrame = document.getElementById('gas-frame');
+    const appUrl = new URL(GAS_WEB_APP_URL);
+    appUrl.search = window.location.search;
+    gasFrame.src = appUrl.href;
+
+    window.addEventListener('message', function (event) {
+      const isAppsScriptOrigin = event.origin === 'https://script.google.com' ||
+        /^https:\/\/[a-z0-9-]+-script\.googleusercontent\.com$/i.test(event.origin);
+      if (!isAppsScriptOrigin || !event.data || event.data.type !== 'fireguard:clear-asset-route') return;
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.searchParams.delete('extId');
+      window.history.replaceState({}, document.title, cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+    });
+  </script>
+</body>
+</html>
