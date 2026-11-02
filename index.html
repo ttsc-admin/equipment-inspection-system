@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Factory Maintenance System</title>
+  <style>
+    body{margin:0;min-height:100dvh;display:grid;place-items:center;background:#f1f7ff;color:#172849;font:16px/1.6 system-ui,sans-serif}
+    main{max-width:34rem;margin:24px;padding:28px;background:white;border:1px solid #dce7f5;border-radius:16px;text-align:center}
+    h1{font-size:22px;margin:0 0 12px}a{color:#1667ff}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Factory Maintenance System</h1>
+    <p id="opening">Opening the application…</p>
+    <a id="continueLink" href="https://ttsc-admin.github.io/factory-maintenance-system/">Continue</a>
+  </main>
+  <script>
+    const destination=new URL('https://ttsc-admin.github.io/factory-maintenance-system/');
+    destination.search=window.location.search;
+    destination.hash=window.location.hash;
+    document.getElementById('continueLink').href=destination.href;
+    let language='en';
+    try{language=localStorage.getItem('fireguard_language')||'en';}catch(_){}
+    const copy={en:['Opening the application…','Continue'],ja:['アプリを開いています…','続行'],vi:['Đang mở ứng dụng…','Tiếp tục']};
+    if(!copy[language])language='en';
+    document.documentElement.lang=language;
+    document.getElementById('opening').textContent=copy[language][0];
+    document.getElementById('continueLink').textContent=copy[language][1];
+    window.location.replace(destination.href);
+  </script>
+</body>
+</html>
